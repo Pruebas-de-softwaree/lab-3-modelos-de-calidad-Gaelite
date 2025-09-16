@@ -1,3 +1,5 @@
+
+import time
 # Available products (id, name, price)
 products = {
     1: {"name": "Laptop", "price": 15000},
@@ -48,12 +50,17 @@ def menu():
         print("\nOptions: products, add, cart, checkout, exit")
         option = input("Choose an option: ")
 
+        start = time.time()
+
         if option == "products":
             show_products()
         elif option == "add":
             try:
                 pid = int(input("Enter the product ID: "))
+                inner_start = time.time() 
                 add_to_cart(pid)
+                inner_end = time.time()
+                print(f"Response time (add): {inner_end - inner_start:.3f} seconds")
             except ValueError:
                 print("Error: ID must be numeric.")
         elif option == "cart":
@@ -66,6 +73,10 @@ def menu():
         else:
             print("Invalid option.")
 
+        end = time.time()
+        if option != "add":
+            print(f"Response time: {end - start:.3f} seconds")
+
 if __name__ == "__main__":
-    # Se intenta comprar sin productos
+    # Se mide el tiempo de respuesta
     menu()
