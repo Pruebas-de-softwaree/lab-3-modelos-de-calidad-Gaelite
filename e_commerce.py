@@ -67,5 +67,5 @@ def menu():
             print("Invalid option.")
 
 if __name__ == "__main__":
-    # Se muestran los productos correctamente
+    # Se intenta comprar sin productos
     menu()
